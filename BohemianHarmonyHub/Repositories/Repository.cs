@@ -14,16 +14,10 @@ namespace BohemianHarmonyHub.Repository
             _context = context;
         }
 
-        public IEnumerable<T> Get()
+        public IQueryable<T> Get()
         {
             var bands = _context.Set<T>().AsNoTracking();
             return bands;
-        }
-
-        public async Task<T> GetById(Expression<Func<T, bool>> predicate)
-        {
-            var band = await _context.Set<T>().FirstOrDefaultAsync(predicate);
-            return band;
         }
 
         public async Task Post(T entity)

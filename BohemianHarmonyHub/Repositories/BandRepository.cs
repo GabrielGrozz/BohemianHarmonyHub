@@ -12,9 +12,15 @@ namespace BohemianHarmonyHub.Repositories
         {
         }
 
+        public async Task<Band> GetById(int id)
+        {
+            var band = Get().FirstOrDefault(res => res.BandId == id);
+            return band;
+        }
+
         public async Task<IEnumerable<Band>> GetByName(string name)
         {
-            var bands =  Get().Where(res => res.Name.Contains(name));
+            var bands = Get().Where(res => res.Name.Contains(name));
             return bands;
         }
     }
