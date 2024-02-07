@@ -7,9 +7,9 @@ namespace BohemianHarmonyHub.Context
     {
         public AppDbContext(DbContextOptions<AppDbContext> op ) : base(op)  {   }
 
-        DbSet<Band>? bands {  get; set; }
-        DbSet<Album>? albums { get; set; }
-        DbSet<BandMember>? bandMembers { get; set; }
+        public DbSet<Band>? bands {  get; set; }
+        public DbSet<Album>? albums { get; set; }
+        public DbSet<BandMember>? bandMembers { get; set; }
 
     }
 }
