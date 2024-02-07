@@ -14,7 +14,7 @@ namespace BohemianHarmonyHub.Repository
             _context = context;
         }
 
-        public IQueryable<T> Get()
+        public IEnumerable<T> Get()
         {
             var bands = _context.Set<T>().AsNoTracking();
             return bands;
@@ -22,26 +22,25 @@ namespace BohemianHarmonyHub.Repository
 
         public async Task<T> GetById(Expression<Func<T, bool>> predicate)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<T> GetByName(string name)
-        {
-            throw new NotImplementedException();
+            var band = await _context.Set<T>().FirstOrDefaultAsync(predicate);
+            return band;
         }
 
         public async Task Post(T entity)
         {
-            throw new NotImplementedException();
+            await _context.Set<T>().AddAsync(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task Put(T entity)
         {
-            throw new NotImplementedException();
+            _context.Entry(entity).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
         public async Task Delete(T entity)
         {
-            throw new NotImplementedException();
+            _context.Remove(entity);
+            await _context.SaveChangesAsync();
         }
     }
 }
