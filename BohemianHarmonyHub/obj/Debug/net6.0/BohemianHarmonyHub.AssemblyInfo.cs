@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BohemianHarmonyHub")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+64b2297d39eb274a3d8908507cc6cd7673bcd28b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("BohemianHarmonyHub")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BohemianHarmonyHub")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
