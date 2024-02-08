@@ -15,30 +15,51 @@ namespace BohemianHarmonyHub.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Band>> Get()
+        public ActionResult<Band> Get()
         {
-            return Ok(_bandRepository.Get());
+            var bands = _bandRepository.Get();
+            if (bands != null) 
+            {
+                return Ok(bands);                
+            }
+
+            return BadRequest();
         }
 
         [HttpGet("{id:int}", Name = "GetBand")]
-        public async Task<ActionResult<Band>> GetById(int id)
+        public ActionResult<Band> GetById(int id)
         {
-            var band = await _bandRepository.GetById(id);
-            return Ok(band);
+            var band = _bandRepository.GetById(id);
+            if (band != null)
+            {
+                return Ok(band);
+            }
+
+            return NotFound();
         }
 
         [HttpGet("name")]
-        public async Task<ActionResult<Band>> GetByName([FromQuery] string name)
+        public ActionResult<Band> GetByName([FromQuery] string name)
         {
-            var band = await _bandRepository.GetByName(name);
-            return Ok(band);
+            var band =  _bandRepository.GetByName(name);
+            if (band != null)
+            {
+                return Ok(band);
+            }
+
+            return NotFound();
         }
 
         [HttpPost]
         public async Task<ActionResult<Band>> Post(Band band)
         {
-            await _bandRepository.Post(band);
-            return new CreatedAtRouteResult("GetBand", new { id = band.BandId }, band);
+            if (band != null)
+            {
+                await _bandRepository.Post(band);
+                return new CreatedAtRouteResult("GetBand", new { id = band.BandId }, band);
+            }
+
+            return BadRequest();
         }
 
         [HttpPut("{id:int}")]
@@ -56,7 +77,7 @@ namespace BohemianHarmonyHub.Controllers
         [HttpDelete("{id:int}")]
         public async Task<ActionResult<Band>> Delete(int id)
         {
-            var band = await _bandRepository.GetById(id);
+            var band = _bandRepository.GetById(id);
             if (band.BandId == id)
             {
                 await _bandRepository.Delete(band);

@@ -1,5 +1,6 @@
 using BohemianHarmonyHub.Context;
 using BohemianHarmonyHub.Repositories;
+using BohemianHarmonyHub.Repositories.Interfaces;
 using BohemianHarmonyHub.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,7 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 string connectionStringMySql = builder.Configuration.GetConnectionString("connectionStringMySql");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(connectionStringMySql, ServerVersion.AutoDetect(connectionStringMySql)));
-builder.Services.AddTransient<IBandRepository, BandRepository>();
+builder.Services.AddScoped<IBandRepository, BandRepository>();
+builder.Services.AddScoped<IBandMemberRepository, BandMemberRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

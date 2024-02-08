@@ -4,7 +4,7 @@ namespace BohemianHarmonyHub.Repository.Interfaces
 {
     public interface IBandRepository : IRepository<Band>
     {
-        Task<Band> GetById(int id);
-        Task<IEnumerable<Band>> GetByName(string name);
+        Band GetById(int id);
+        IQueryable<Band> GetByName(string name);
     }
 }
