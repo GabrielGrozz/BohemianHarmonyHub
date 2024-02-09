@@ -3,6 +3,7 @@ using BohemianHarmonyHub.Repositories;
 using BohemianHarmonyHub.Repositories.Interfaces;
 using BohemianHarmonyHub.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,8 +13,11 @@ string connectionStringMySql = builder.Configuration.GetConnectionString("connec
 builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(connectionStringMySql, ServerVersion.AutoDetect(connectionStringMySql)));
 builder.Services.AddScoped<IBandRepository, BandRepository>();
 builder.Services.AddScoped<IBandMemberRepository, BandMemberRepository>();
+builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(op =>
+    op.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles
+    );
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -26,6 +30,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(options =>
+{
+    options.WithOrigins("https://localhost:3000/");
+    options.AllowAnyHeader();
+    options.AllowAnyMethod();
+    options.AllowAnyOrigin();
+});
 
 app.UseHttpsRedirection();
 

@@ -12,6 +12,12 @@ namespace BohemianHarmonyHub.Repositories
         {
         }
 
+        public IEnumerable<Band> GetBandAlbumsAndMembers()
+        {
+            var bands = Get().Include(res => res.BandMembers).Include(res => res.Discography).ToList();
+            return bands;
+        }
+
         public Band GetById(int id)
         {
             var band = Get().FirstOrDefault(res => res.BandId == id);

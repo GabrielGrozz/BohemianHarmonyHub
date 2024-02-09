@@ -1,6 +1,7 @@
 ﻿using BohemianHarmonyHub.Models;
 using BohemianHarmonyHub.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BohemianHarmonyHub.Controllers
 {
@@ -48,6 +49,13 @@ namespace BohemianHarmonyHub.Controllers
             }
 
             return NotFound();
+        }
+
+        [HttpGet("details")]
+        public ActionResult<IEnumerable<Band>> GetBandAlbumsAndMembers() 
+        {
+            var bands = _bandRepository.GetBandAlbumsAndMembers();            
+            return Ok(bands);
         }
 
         [HttpPost]

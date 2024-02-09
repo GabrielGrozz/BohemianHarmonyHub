@@ -1,9 +1,12 @@
 ﻿using BohemianHarmonyHub.Models;
 using BohemianHarmonyHub.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BohemianHarmonyHub.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class AlbumsController : Controller
     {
         private readonly IAlbumRepository _albumRepository;
@@ -12,9 +15,10 @@ namespace BohemianHarmonyHub.Controllers
             _albumRepository = albumRepository;
         }
 
-        public ActionResult<IQueryable<Album>> Get()
+        [HttpGet]
+        public ActionResult<IEnumerable<Album>> Get()
         {
-            var albums = _albumRepository.Get();
+            var albums = _albumRepository.Get().ToList();
             if (albums != null)
             {
                 return Ok(albums);
@@ -22,6 +26,7 @@ namespace BohemianHarmonyHub.Controllers
             return BadRequest();
         }
 
+        [HttpGet("{id:int}", Name ="GetAlbum")]
         public ActionResult<Album> GetById(int id)
         {
             var album = _albumRepository.GetById(id);
@@ -33,9 +38,10 @@ namespace BohemianHarmonyHub.Controllers
             return BadRequest();
         }
 
-        public ActionResult<IQueryable<Album>> GetByName(string name)
+        [HttpGet("name")]
+        public ActionResult<IEnumerable<Album>> GetByName([FromQuery] string name)
         {
-            var album = _albumRepository.GetByName(name);
+            var album = _albumRepository.GetByName(name).ToList();
             if (album != null)
             {
                 return Ok(album);
@@ -43,6 +49,7 @@ namespace BohemianHarmonyHub.Controllers
             return BadRequest();
         }
 
+        [HttpPost]
         public async Task<ActionResult<Album>> Post(Album album)
         {
             if (album != null)
@@ -54,6 +61,7 @@ namespace BohemianHarmonyHub.Controllers
             return BadRequest();
         }
 
+        [HttpPut("{id:int}")]
         public async Task<ActionResult<Album>> Put(int id, Album album)
         {
             if (album.AlbumId == id)
@@ -65,6 +73,7 @@ namespace BohemianHarmonyHub.Controllers
             return BadRequest();
         }
 
+        [HttpDelete("{id:int}")]
         public async Task<ActionResult<Album>> Delete(int id)
         {
             var album = _albumRepository.GetById(id);

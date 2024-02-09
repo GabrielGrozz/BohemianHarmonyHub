@@ -10,7 +10,7 @@ namespace BohemianHarmonyHub.Repositories
         public AlbumRepository(AppDbContext context) : base(context) { }
         public Album GetById(int id)
         {
-            var album = Get().FirstOrDefault(res => res.BandId == id);
+            var album = Get().FirstOrDefault(res => res.AlbumId == id);
             return album;
         }
 
