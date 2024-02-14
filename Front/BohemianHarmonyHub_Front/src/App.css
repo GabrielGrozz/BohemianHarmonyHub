@@ -1,14 +1,59 @@
 *{
   margin: 0;
   padding: 0;
+  font-family: system-ui, -apple-system, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.band-container{
+  padding: 15px;
+  margin: 20px 0;
+  background-color: red;
+
+}
+
+.band-country{
+  font-size: 1em;
+  background-color: aqua;
+}
+.band-name{
+  font-size: 3em;
+  background-color: blue;
+}
+
+.band-genre{
+  font-size: 1.5em;
+  background-color: purple;
+}
+
+.band-bio{
+  font-size: 1.3em;
+  background: green;
 }
 
 .header{
-  padding: 5vh 0;
+  padding: 8vh 0;
   text-align: center;
   background: rgb(240, 235, 235);
 }
 
+.main-container{
+  padding: 20vh 10vw;
+}
+
+td, th{
+  padding: 15px;
+  font-size: 1.2em;
+}
+
+.table-bio{
+  width:50%;
+}
+
+.table-name, .table-genre, .table-country{
+  text-align: center;
+  font-size: 1.4em;
+  font-weight: bold;
+}
 .name{
   font-size: 3em;
 }
