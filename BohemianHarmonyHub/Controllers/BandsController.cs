@@ -58,6 +58,13 @@ namespace BohemianHarmonyHub.Controllers
             return Ok(bands);
         }
 
+        [HttpGet("details/{id:int}")]
+        public ActionResult<IEnumerable<Band>> GetByIdBandAlbumsAndMembers(int id)
+        {
+            var band = _bandRepository.GetBandAlbumsAndMembers().FirstOrDefault(res => res.BandId == id);
+            return Ok(band);
+        }
+
         [HttpPost]
         public async Task<ActionResult<Band>> Post(Band band)
         {

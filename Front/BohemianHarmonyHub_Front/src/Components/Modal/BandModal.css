@@ -1,0 +1,10 @@
+.index{
+    position: absolute;
+    background-color: red;
+    left: 0; 
+    right: 0; 
+    margin: 50px auto;     
+    width: 50vw;
+    height: 80vh;
+
+}

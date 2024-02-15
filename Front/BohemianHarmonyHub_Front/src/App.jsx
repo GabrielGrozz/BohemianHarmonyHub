@@ -28,18 +28,14 @@ function App() {
       <main className="main">
         <div className="main-container">
           {data.map((e) => (
-            <div key={e.bandId} className="band-container">
-              <div className="band-country">
-                <p>{e.countryOfOrigin}</p>
-              </div>
-              <div className="band-name">
-                <p>{e.name}</p>
-              </div>
-              <div className="band-genre">
-                <p>{e.genre}</p>
-              </div>
-              <div className="band-bio">{e.bandBiography}</div>
-            </div>
+            <Band
+              bandId={e.bandId}
+              countryOfOrigin={e.countryOfOrigin}
+              name={e.name}
+              genre={e.genre}
+              bandBiography={e.bandBiography}
+              onClick={() => console.log("chegou")}
+            />
           ))}
         </div>
       </main>
