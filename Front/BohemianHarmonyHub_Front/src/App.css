@@ -17,20 +17,29 @@
 
 .main-container{
   padding: 20vh 10vw;
-  background-color: #0f0f0f;
+  background-color: #242424;
 }
 
 .band-container{
   padding: 03vw ;
-  margin: 20px 0;
+  margin: 60px 0;
   background-color: #161616;
   border-radius: 5px;
+  transition: .3s;
+  
+}
 
+.band-container:hover{
+  box-shadow: 0px 0px 30px rgb(116, 115, 115);  
+}
+
+.band-data-container{
+  text-decoration: none;  
 }
 
 .band-country{
   font-size: 1em;
-  color: #505050;
+  color: #818181;
 
 }
 .band-name{
@@ -41,7 +50,7 @@
 }
 
 .band-genre{
-  color: #505050;
+  color: #868686;
   font-size: 1.5em;
 
 }

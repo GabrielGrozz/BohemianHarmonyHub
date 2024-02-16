@@ -6,8 +6,8 @@ import BandModal from "./Components/Modal/BandModal";
 
 function App() {
   const [data, setData] = useState([]);
-  const [bandData, setBandData] = useState("");
-  const [bandModalIsOpen, setbandModalIsOpen] = useState(true);
+  const [bandData, setBandData] = useState({});
+  const [bandModalIsOpen, setbandModalIsOpen] = useState(false);
 
   const url = "https://localhost:7117/Bands/details";
 
@@ -19,6 +19,7 @@ function App() {
 
   function bandClick(e) {
     setBandData(e);
+    setbandModalIsOpen(!bandModalIsOpen);
     return console.log("aparentemente funciona   ", bandData);
   }
 
@@ -29,24 +30,16 @@ function App() {
         <h1 className="name">Bohemian Harmony Hub</h1>
       </header>
 
-      <button
-        onClick={() => {
-          setbandModalIsOpen(!bandModalIsOpen);
-          return console.log(bandModalIsOpen);
-        }}
-      >
-        abrirEfecharModal
-      </button>
-
       <BandModal isOpen={bandModalIsOpen} band={bandData} />
 
       <main className="main">
         <div className="main-container">
           {data.map((res) => (
             <a
+            className="band-data-container"
               onClick={(e) => {
                 e.preventDefault();
-                bandClick(res.name);
+                bandClick(res);
               }}
               href=""
             >
