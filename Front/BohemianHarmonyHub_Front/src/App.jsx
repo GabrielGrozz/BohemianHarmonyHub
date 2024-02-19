@@ -23,6 +23,10 @@ function App() {
     return console.log("aparentemente funciona   ", bandData);
   }
 
+  function OpenCloseModal()  {
+    setbandModalIsOpen(!bandModalIsOpen)
+  }
+
   return (
     <>
       <button onClick={req}>taotaotao</button>
@@ -30,7 +34,7 @@ function App() {
         <h1 className="name">Bohemian Harmony Hub</h1>
       </header>
 
-      <BandModal isOpen={bandModalIsOpen} band={bandData} />
+      <BandModal isOpen={bandModalIsOpen} band={bandData} OpenCloseModal={OpenCloseModal} />
 
       <main className="main">
         <div className="main-container">
@@ -44,6 +48,7 @@ function App() {
               href=""
             >
               <Band
+              
                 bandId={res.bandId}
                 countryOfOrigin={res.countryOfOrigin}
                 name={res.name}

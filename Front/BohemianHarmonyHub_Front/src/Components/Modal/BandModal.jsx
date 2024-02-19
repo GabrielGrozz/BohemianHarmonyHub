@@ -6,7 +6,7 @@ function BandModal(props) {
     return (
       <>
         <div className="bandmodal-container">
-          <button onClick={() => console.log(props)}>aaa</button>
+          <button onClick={props.OpenCloseModal}>aaa</button>
           <div className="bandmodal-intern-container">
             <div className="band-country">
               <p>{props.band.countryOfOrigin}</p>
