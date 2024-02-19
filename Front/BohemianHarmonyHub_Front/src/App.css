@@ -33,6 +33,22 @@
   box-shadow: 0px 0px 30px rgb(116, 115, 115);  
 }
 
+.create-button{
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(109, 109, 109);
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #1b1b1b;
+  padding: 15px;
+  transition: .3s;
+}
+
+.create-button:hover{
+  cursor: pointer;
+  box-shadow: 0 0 50px rgb(82, 82, 82);
+}
+
 .band-data-container{
   text-decoration: none;  
 }

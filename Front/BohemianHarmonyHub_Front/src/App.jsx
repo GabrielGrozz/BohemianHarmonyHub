@@ -1,13 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Band from "./Components/Band";
 import axios from "axios";
 import BandModal from "./Components/Modal/BandModal";
+import CreateModal from "./Components/Modal/CreateModal";
+import UpdateModal from "./Components/Modal/UpdateModal";
+import DeleteModal from "./Components/Modal/DeleteModal";
 
 function App() {
   const [data, setData] = useState([]);
   const [bandData, setBandData] = useState({});
   const [bandModalIsOpen, setbandModalIsOpen] = useState(false);
+  const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
+  const [updateModalIsOpen, setUpdateModalIsOpen] = useState(false);
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
 
   const url = "https://localhost:7117/Bands/details";
 
@@ -23,21 +29,33 @@ function App() {
     return console.log("aparentemente funciona   ", bandData);
   }
 
-  function OpenCloseModal()  {
-    setbandModalIsOpen(!bandModalIsOpen)
-  }
+  function OpenCloseBandModal() {   setbandModalIsOpen(!bandModalIsOpen) };
+  function OpenCloseCreateModal() {
+       setCreateModalIsOpen(!createModalIsOpen) 
+       return console.log (createModalIsOpen)
+      };
+  function OpenCloseUpdateModal() {   setUpdateModalIsOpen(!updateModalIsOpen) };
+  function OpenCloseDeleteModal() {   setDeleteModalIsOpen(!deleteModalIsOpen) };
+
+  useEffect(() => {
+    req()
+  }, [])
 
   return (
     <>
-      <button onClick={req}>taotaotao</button>
       <header className="header">
         <h1 className="name">Bohemian Harmony Hub</h1>
       </header>
 
-      <BandModal isOpen={bandModalIsOpen} band={bandData} OpenCloseModal={OpenCloseModal} />
+      <BandModal isOpen={bandModalIsOpen} band={bandData} OpenCloseModal={OpenCloseBandModal} />
+      <CreateModal isOpen={createModalIsOpen} band={bandData} OpenCloseModal={OpenCloseCreateModal} />
+      <UpdateModal isOpen={updateModalIsOpen} band={bandData} OpenCloseModal={OpenCloseUpdateModal} />
+      <DeleteModal isOpen={deleteModalIsOpen} band={bandData} OpenCloseModal={OpenCloseDeleteModal} />
 
       <main className="main">
+
         <div className="main-container">
+        <button className="create-button" onClick={OpenCloseCreateModal}>CREATE</button>
           {data.map((res) => (
             <a
             className="band-data-container"

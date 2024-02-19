@@ -1,0 +1,15 @@
+.modals-container{
+    position: absolute;
+    background-color: rgb(56, 56, 56);
+    left: 0; 
+    right: 0; 
+    margin: 50px auto;     
+    width: 50vw;
+    padding: 5vh;
+}
+
+.teste{
+    background-color: red;
+    height: 300px;
+    width: 300px;
+}
