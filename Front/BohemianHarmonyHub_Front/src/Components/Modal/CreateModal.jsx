@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import "./Modals.css";
 
+const url = "https://localhost:7117/Bands";
+
+
 function CreateModal(props) {
+  const [data, setData] = useState([])
   const [bandData, setBandData] = useState({
     BandId: "",
     Name: "",
@@ -10,69 +15,77 @@ function CreateModal(props) {
     BandBiography: "",
   });
 
-  function HandleChange(e) {
-    setBandData(e);
-    return console.log(bandData);
+  async function Bandpost(e) {
+    delete bandData.BandId;
+  
+    await axios.post(url, bandData).then((res) => {
+      setData(data.concat(res.data));
+    });
   }
 
-  useEffect(() => {
-    HandleChange();
-  }, [HandleChange]);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setBandData({
+      ...bandData,
+      [name]: value,
+    });
+    return console.log(name, value);
+  };
 
-  if (props.isOpen == true) {
-    return (
-      <>
-        <div className="modals-container">
-          <form action="">
-            <div className="form-field">
-              <label htmlFor="name">Nome</label>
-              <input
-                type="text"
-                id="name"
-                onChange={(e) => HandleChange(e.target.value)}
-                required
-                placeholder="nome da banda"
-              />
-            </div>
-            <div className="form-field">
-              <label htmlFor="genre">Gênero</label>
-              <input
-                type="text"
-                id="genre"
-                onChange={(e) => HandleChange(e.target.value)}
-                required
-                placeholder="gênero musical da banda"
-              />
-            </div>
-            <div className="form-field">
-              <label htmlFor="country-of-origin">País de origem</label>
-              <input
-                type="text"
-                id="country-of-origin"
-                onChange={(e) => HandleChange(e.target.value)}
-                required
-                placeholder=" país de origem da banda"
-              />
-            </div>
-            <div className="form-field">
-              <label htmlFor="band-biography">Biografia da banda</label>
-              <input
-                type="text"
-                id="band-biography"
-                onChange={(e) => HandleChange(e.target.value)}
-                required
-                placeholder=" biografia da banda"
-              />
-            </div>
+  return (
+    <>
+      <div className="modals-container">
+        <form>
+          <div className="form-field">
+            <label htmlFor="name">Nome</label>
+            <input
+              type="text"
+              id="name"
+              name="Name"
+              onChange={handleChange}
+              required
+              placeholder="nome da banda"
+            />
+          </div>
+          <div className="form-field">
+            <label htmlFor="genre">Gênero</label>
+            <input
+              type="text"
+              id="Genre"
+              name="Genre"
+              onChange={handleChange}
+              required
+              placeholder="gênero musical da banda"
+            />
+          </div>
+          <div className="form-field">
+            <label htmlFor="country-of-origin">País de origem</label>
+            <input
+              type="text"
+              id="country-of-origin"
+              name="CountryOfOrigin"
+              onChange={handleChange}
+              required
+              placeholder=" país de origem da banda"
+            />
+          </div>
+          <div className="form-field">
+            <label htmlFor="band-biography">Biografia da banda</label>
+            <input
+              type="text"
+              id="band-biography"
+              name="BandBiography"
+              onChange={handleChange}
+              required
+              placeholder=" biografia da banda"
+            />
+          </div>
 
-            <button type="submit">Criar</button>
-          </form>
-        </div>
-      </>
-    );
-  } else {
-    return <></>;
-  }
+          <button type="submit" onClick={Bandpost}>Criar</button>
+        </form>
+      </div>
+    </>
+  );
 }
 
 export default CreateModal;
