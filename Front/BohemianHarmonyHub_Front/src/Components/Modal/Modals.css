@@ -8,10 +8,12 @@
     padding: 5vh;
 }
 
-.teste{
-    background-color: red;
-    height: 300px;
-    width: 300px;
+.close-button{
+    width: 3vw;
+    height: 6vh;
+    background-color: rgb(77, 77, 77);
+    padding: 5px;
+    border-radius: 5px;
 }
 
 .form-field{

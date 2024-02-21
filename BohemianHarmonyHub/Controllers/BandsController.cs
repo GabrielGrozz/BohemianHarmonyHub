@@ -70,6 +70,10 @@ namespace BohemianHarmonyHub.Controllers
         {
             if (band != null)
             {
+                if(band.Name == "String" || band.Name == "string")
+                {
+                    return BadRequest("o nome String não é válido");
+                }
                 await _bandRepository.Post(band);
                 return new CreatedAtRouteResult("GetBand", new { id = band.BandId }, band);
             }

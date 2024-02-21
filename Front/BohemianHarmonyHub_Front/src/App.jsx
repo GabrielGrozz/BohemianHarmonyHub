@@ -25,21 +25,25 @@ function App() {
 
   function bandClick(e) {
     setBandData(e);
-    setbandModalIsOpen(!bandModalIsOpen);
     return console.log("aparentemente funciona   ", bandData);
   }
 
-  function OpenCloseBandModal() {   setbandModalIsOpen(!bandModalIsOpen) };
+  function OpenCloseBandModal() {
+    setbandModalIsOpen(!bandModalIsOpen);
+  }
   function OpenCloseCreateModal() {
-       setCreateModalIsOpen(!createModalIsOpen) 
-       return console.log (createModalIsOpen)
-      };
-  function OpenCloseUpdateModal() {   setUpdateModalIsOpen(!updateModalIsOpen) };
-  function OpenCloseDeleteModal() {   setDeleteModalIsOpen(!deleteModalIsOpen) };
+    setCreateModalIsOpen(!createModalIsOpen);
+  }
+  function OpenCloseUpdateModal() {
+    setUpdateModalIsOpen(!updateModalIsOpen);
+  }
+  function OpenCloseDeleteModal() {
+    setDeleteModalIsOpen(!deleteModalIsOpen);
+  }
 
   useEffect(() => {
-    req()
-  }, [])
+    req();
+  }, []);
 
   return (
     <>
@@ -47,18 +51,35 @@ function App() {
         <h1 className="name">Bohemian Harmony Hub</h1>
       </header>
 
-      <BandModal isOpen={bandModalIsOpen} band={bandData} OpenCloseModal={OpenCloseBandModal} />
-      <CreateModal isOpen={createModalIsOpen} band={bandData} OpenCloseModal={OpenCloseCreateModal} />
-      <UpdateModal isOpen={updateModalIsOpen} band={bandData} OpenCloseModal={OpenCloseUpdateModal} />
-      <DeleteModal isOpen={deleteModalIsOpen} band={bandData} OpenCloseModal={OpenCloseDeleteModal} />
+      <BandModal
+        isOpen={bandModalIsOpen}
+        band={bandData}
+        OpenCloseModal={OpenCloseBandModal}
+      />
+      <CreateModal
+        isOpen={createModalIsOpen}
+        band={bandData}
+        OpenCloseModal={OpenCloseCreateModal}
+      />
+      <UpdateModal
+        isOpen={updateModalIsOpen}
+        band={bandData}
+        OpenCloseModal={OpenCloseUpdateModal}
+      />
+      <DeleteModal
+        isOpen={deleteModalIsOpen}
+        band={bandData}
+        OpenCloseModal={OpenCloseDeleteModal}
+      />
 
       <main className="main">
-
         <div className="main-container">
-        <button className="create-button" onClick={OpenCloseCreateModal}>CREATE</button>
+          <button className="create-button" onClick={OpenCloseCreateModal}>
+            CREATE
+          </button>
           {data.map((res) => (
             <a
-            className="band-data-container"
+              className="band-data-container"
               onClick={(e) => {
                 e.preventDefault();
                 bandClick(res);
@@ -66,7 +87,7 @@ function App() {
               href=""
             >
               <Band
-              
+                isOpen={OpenCloseBandModal}
                 bandId={res.bandId}
                 countryOfOrigin={res.countryOfOrigin}
                 name={res.name}

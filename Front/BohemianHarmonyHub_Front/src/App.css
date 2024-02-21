@@ -1,39 +1,40 @@
-*{
+* {
   margin: 0;
   padding: 0;
-  font-family: system-ui, -apple-system, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, -apple-system, Roboto, Oxygen, Ubuntu, Cantarell,
+    "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.header{
+.header {
   padding: 8vh 0;
   text-align: center;
   background: rgb(97, 97, 97);
 }
 
-.name{
+.name {
   font-size: 4em;
   color: #1b1b1f;
 }
 
-.main-container{
+.main-container {
   padding: 20vh 10vw;
   background-color: #242424;
 }
 
-.band-container{
-  padding: 03vw ;
+.band-container {
+  padding: 03vw;
   margin: 60px 0;
   background-color: #161616;
   border-radius: 5px;
-  transition: .3s;
-  
+  transition: 0.3s;
+  position: relative;
 }
 
-.band-container:hover{
-  box-shadow: 0px 0px 30px rgb(116, 115, 115);  
+.band-container:hover {
+  box-shadow: 0px 0px 30px rgb(116, 115, 115);
 }
 
-.create-button{
+.create-button {
   border: none;
   border-radius: 5px;
   background-color: rgb(109, 109, 109);
@@ -41,44 +42,67 @@
   font-weight: bold;
   color: #1b1b1b;
   padding: 15px;
-  transition: .3s;
+  transition: 0.3s;
 }
 
-.create-button:hover{
+.create-button:hover {
   cursor: pointer;
   box-shadow: 0 0 50px rgb(82, 82, 82);
 }
 
-.band-data-container{
-  text-decoration: none;  
+.band-data-container {
+  text-decoration: none;
 }
 
-.band-country{
+.band-country {
   font-size: 1em;
   color: #818181;
-
 }
-.band-name{
+.band-name {
+  display: flex;
   color: #a4a4a5;
   font-size: 3em;
   font-weight: bold;
   text-shadow: 0 0 25px #646464;
 }
 
-.band-genre{
+.band-components {
+  position: absolute;
+  right: 15px;
+  align-items: flex-end;
+  justify-content: flex-end;
+  background-color: greenyellow;
+}
+
+.edit-component, .delete-component{
+  text-shadow: none;
+  text-shadow: none;
+  transition: .2s;
+}
+
+.edit-component :hover{
+  box-shadow: 10px 10px red; 
+}
+
+.edit-component {
+  color: green;
+}
+
+.delete-component {  
+  color: red;
+}
+
+.band-genre {
   color: #868686;
   font-size: 1.5em;
-
 }
 
-.band-bio{
+.band-bio {
   font-size: 1.4em;
   color: #a3a3a3;
-
 }
 
-.BandModal{
+.BandModal {
   background-color: red;
   height: 150px;
 }
-
