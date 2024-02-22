@@ -23,11 +23,10 @@
 
 .band-container {
   padding: 03vw;
-  margin: 60px 0;
   background-color: #161616;
   border-radius: 5px;
   transition: 0.3s;
-  position: relative;
+  width: 60vw;
 }
 
 .band-container:hover {
@@ -50,6 +49,11 @@
   box-shadow: 0 0 50px rgb(82, 82, 82);
 }
 
+.band-container-data{
+  display: flex;
+  padding: 30px;margin: 5vh 0;
+}
+
 .band-data-container {
   text-decoration: none;
 }
@@ -66,32 +70,6 @@
   text-shadow: 0 0 25px #646464;
 }
 
-.band-components {
-  position: absolute;
-  right: 15px;
-  align-items: flex-end;
-  justify-content: flex-end;
-  background-color: greenyellow;
-}
-
-.edit-component, .delete-component{
-  text-shadow: none;
-  text-shadow: none;
-  transition: .2s;
-}
-
-.edit-component :hover{
-  box-shadow: 10px 10px red; 
-}
-
-.edit-component {
-  color: green;
-}
-
-.delete-component {  
-  color: red;
-}
-
 .band-genre {
   color: #868686;
   font-size: 1.5em;
@@ -105,4 +83,31 @@
 .BandModal {
   background-color: red;
   height: 150px;
+}
+
+.edit-delete-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.link{
+  display: flex;
+  margin: 0 5px 10px 5px;
+  width: 5vw;
+  height: 5vw;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  
+}
+.edit-link{
+  background-color: rgb(0, 99, 0);
+}
+
+.edit-delete-link-image{
+  width: 60%;
+}
+
+.delete-link{
+  background-color: rgb(184, 1, 1);  
 }

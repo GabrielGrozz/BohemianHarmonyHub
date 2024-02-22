@@ -2,14 +2,18 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Band from "./Components/Band";
 import axios from "axios";
+
 import BandModal from "./Components/Modal/BandModal";
 import CreateModal from "./Components/Modal/CreateModal";
 import UpdateModal from "./Components/Modal/UpdateModal";
 import DeleteModal from "./Components/Modal/DeleteModal";
 
+import trashCan from '../public/trashCan.png'
+import pencil from '../public/pencil.png'
 function App() {
   const [data, setData] = useState([]);
   const [bandData, setBandData] = useState({});
+  const [deleteBandaData , setDeletBandData] = useState({});
   const [bandModalIsOpen, setbandModalIsOpen] = useState(false);
   const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
   const [updateModalIsOpen, setUpdateModalIsOpen] = useState(false);
@@ -24,8 +28,14 @@ function App() {
     });
 
   function bandClick(e) {
+    setbandModalIsOpen(!bandModalIsOpen);
     setBandData(e);
     return console.log("aparentemente funciona   ", bandData);
+  }
+
+  function deleteClick(e){
+    setDeleteModalIsOpen(!deleteModalIsOpen)
+    setDeletBandData(e)
   }
 
   function OpenCloseBandModal() {
@@ -68,7 +78,7 @@ function App() {
       />
       <DeleteModal
         isOpen={deleteModalIsOpen}
-        band={bandData}
+        band={deleteBandaData}
         OpenCloseModal={OpenCloseDeleteModal}
       />
 
@@ -78,23 +88,34 @@ function App() {
             CREATE
           </button>
           {data.map((res) => (
-            <a
-              className="band-data-container"
-              onClick={(e) => {
-                e.preventDefault();
-                bandClick(res);
-              }}
-              href=""
-            >
-              <Band
-                isOpen={OpenCloseBandModal}
-                bandId={res.bandId}
-                countryOfOrigin={res.countryOfOrigin}
-                name={res.name}
-                genre={res.genre}
-                bandBiography={res.bandBiography}
-              />
-            </a>
+            <div className="band-container-data">
+              <a
+                className=" band-data-container"
+                onClick={(e) => {
+                  e.preventDefault();
+                  bandClick(res);
+                }}
+                href=""
+              >
+                <div className="">
+                  <Band
+                    isOpen={OpenCloseBandModal}
+                    bandId={res.bandId}
+                    countryOfOrigin={res.countryOfOrigin}
+                    name={res.name}
+                    genre={res.genre}
+                    bandBiography={res.bandBiography}
+                  />
+                </div>
+              </a>
+              <div className="edit-delete-container">
+                <a href="" className="edit-link link"><img src={pencil} alt="" className="edit-delete-link-image" /></a>
+                <a href="" className="delete-link link" onClick={(e) => {
+                  e.preventDefault()
+                  deleteClick(res)
+                }}><img src={trashCan} alt="" className="edit-delete-link-image"/></a>
+              </div>
+            </div>
           ))}
         </div>
       </main>
