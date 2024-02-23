@@ -1,14 +1,26 @@
 import { useEffect, useState } from "react";
 import "./Modals.css";
+import axios from "axios";
 
 function UpdateModal(props) {
-  const [data, setData] = useState({
-    BandId: props.band.BandId,
+  const url = `https://localhost:7117/Bands/${props.band.bandId}`;
+
+  const [bandData, setBandData] = useState({
+    BandId: "",
     Name: "",
     Genre: "",
     CountryOfOrigin: "",
     BandBiography: "",
   });
+
+  async function updateBand() {
+    setBandData({
+      ...bandData,
+      BandId: props.band.bandId
+    })
+    await axios.put(url, bandData);
+    return console.log(bandData)
+  }
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -16,6 +28,7 @@ function UpdateModal(props) {
       ...bandData,
       [name]: value,
     });
+    return console.log(bandData);
   }
 
   if (props.isOpen == true) {
@@ -30,7 +43,6 @@ function UpdateModal(props) {
                 id="name"
                 name="Name"
                 onChange={handleChange}
-                required
                 placeholder="nome da banda"
               />
             </div>
@@ -41,7 +53,6 @@ function UpdateModal(props) {
                 id="Genre"
                 name="Genre"
                 onChange={handleChange}
-                required
                 placeholder="gênero musical da banda"
               />
             </div>
@@ -52,7 +63,6 @@ function UpdateModal(props) {
                 id="country-of-origin"
                 name="CountryOfOrigin"
                 onChange={handleChange}
-                required
                 placeholder=" país de origem da banda"
               />
             </div>
@@ -63,9 +73,18 @@ function UpdateModal(props) {
                 id="band-biography"
                 name="BandBiography"
                 onChange={handleChange}
-                required
                 placeholder=" biografia da banda"
               />
+            </div>
+
+            <div>
+              <button type="submit" onClick={(e) => {
+                e.preventDefault()
+                console.log(props.band.bandId)
+                updateBand()
+              }}>
+                Atualizar dados
+              </button>
             </div>
           </form>
         </div>

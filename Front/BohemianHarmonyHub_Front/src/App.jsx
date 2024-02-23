@@ -14,6 +14,7 @@ function App() {
   const [data, setData] = useState([]);
   const [bandData, setBandData] = useState({});
   const [deleteBandaData , setDeletBandData] = useState({});
+  const [updateBandData , setUpdateBandData] = useState({});
   const [bandModalIsOpen, setbandModalIsOpen] = useState(false);
   const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
   const [updateModalIsOpen, setUpdateModalIsOpen] = useState(false);
@@ -34,13 +35,14 @@ function App() {
   }
 
   function updateClick(e){
+    setUpdateBandData(e)
     setUpdateModalIsOpen(!updateModalIsOpen)
     
   }
 
   function deleteClick(e){
-    setDeleteModalIsOpen(!deleteModalIsOpen)
     setDeletBandData(e)
+    setDeleteModalIsOpen(!deleteModalIsOpen)
   }
 
   function OpenCloseBandModal() {
@@ -78,7 +80,7 @@ function App() {
       />
       <UpdateModal
         isOpen={updateModalIsOpen}
-        band={bandData}
+        band={updateBandData}
         OpenCloseModal={OpenCloseUpdateModal}
       />
       <DeleteModal
