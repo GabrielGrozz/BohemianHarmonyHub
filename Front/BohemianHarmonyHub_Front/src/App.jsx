@@ -33,6 +33,11 @@ function App() {
     return console.log("aparentemente funciona   ", bandData);
   }
 
+  function updateClick(e){
+    setUpdateModalIsOpen(!updateModalIsOpen)
+    
+  }
+
   function deleteClick(e){
     setDeleteModalIsOpen(!deleteModalIsOpen)
     setDeletBandData(e)
@@ -109,7 +114,10 @@ function App() {
                 </div>
               </a>
               <div className="edit-delete-container">
-                <a href="" className="edit-link link"><img src={pencil} alt="" className="edit-delete-link-image" /></a>
+                <a href="" className="edit-link link" onClick={(e) =>{
+                  e.preventDefault();
+                  updateClick(res)
+                }}><img src={pencil} alt="" className="edit-delete-link-image" /></a>
                 <a href="" className="delete-link link" onClick={(e) => {
                   e.preventDefault()
                   deleteClick(res)
