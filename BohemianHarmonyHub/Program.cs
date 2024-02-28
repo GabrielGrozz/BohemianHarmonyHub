@@ -2,6 +2,7 @@ using BohemianHarmonyHub.Context;
 using BohemianHarmonyHub.Repositories;
 using BohemianHarmonyHub.Repositories.Interfaces;
 using BohemianHarmonyHub.Repository.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -14,6 +15,8 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(connecti
 builder.Services.AddScoped<IBandRepository, BandRepository>();
 builder.Services.AddScoped<IBandMemberRepository, BandMemberRepository>();
 builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
 builder.Services.AddControllers().AddJsonOptions(op =>
     op.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles
@@ -41,6 +44,7 @@ app.UseCors(options =>
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

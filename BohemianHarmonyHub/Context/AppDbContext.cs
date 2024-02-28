@@ -1,9 +1,10 @@
 ﻿using BohemianHarmonyHub.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace BohemianHarmonyHub.Context
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> op ) : base(op)  {   }
 
